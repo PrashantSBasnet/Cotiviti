@@ -2,15 +2,11 @@ package com.biddingsystem.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.entity.User;
 import com.biddingsystem.repo.UserRepo;
-
 import lombok.*;
 
 @Data
@@ -68,4 +64,9 @@ public class UserServiceImpl implements UserService {
 		userRepo.deleteById(id);
 	}
 
+	@Override
+	public List<UserDto> searchUser(String search) {
+		List<User> userList = userRepo.searchUser(search);
+		return UserDto.builder().build().toDto(userList);
+	}
 }

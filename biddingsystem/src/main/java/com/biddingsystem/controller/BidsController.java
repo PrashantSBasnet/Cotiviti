@@ -24,10 +24,33 @@ public class BidsController {
         return new ResponseEntity<BidsDto>(bidsService.save(bidsDto), HttpStatus.OK);
     }
 
-    @GetMapping("/bids")
-    public ResponseEntity<List<Bids>> getBids() {
+    @GetMapping("/findAll")
+    public ResponseEntity<List<BidsDto>> getBids() {
 
-        return new ResponseEntity<>(bidsService.findAll(), HttpStatus.OK);
+        List<BidsDto> dtoList = bidsService.findAllBids();
+
+        return new ResponseEntity<>(dtoList,HttpStatus.OK);
+
+    }
+
+    @GetMapping("/find-by-status/{status}")
+    public ResponseEntity<List<BidsDto>> findByStatus(@PathVariable("status") String status) throws Exception{
+        List<BidsDto> dtoList = bidsService.findbyStatus(status);
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/find-available/{id}")
+    public ResponseEntity<List<BidsDto>>findAvailableBids(@PathVariable("id") Integer id) throws Exception{
+        List<BidsDto> dtoList = bidsService.findAvailableBids(id);
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/search-bids/{search}")
+    public ResponseEntity<List<BidsDto>>searchBids(@PathVariable("search") String search) {
+        List<BidsDto> dtoList = bidsService.searchBids(search);
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
 

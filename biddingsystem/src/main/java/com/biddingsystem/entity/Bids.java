@@ -25,7 +25,7 @@ public class Bids {
 	private String bid_status;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_USER_ID_ID"))
+	@JoinColumn(name = "user_id")
 	User users;
 	
 }

@@ -2,6 +2,7 @@ package com.biddingsystem.service;
 
 import java.util.List;
 
+import com.biddingsystem.dto.BidsDto;
 import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.entity.User;
 
@@ -15,10 +16,6 @@ public interface UserService {
 	
 	List<UserDto> findbyRole (String role);
 
-
 	void deleteById(Integer id);
-
-	
-	
-
+	List<UserDto> searchUser(String search);
 }

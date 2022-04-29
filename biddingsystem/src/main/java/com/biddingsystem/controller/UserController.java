@@ -2,6 +2,7 @@ package com.biddingsystem.controller;
 
 import java.util.List;
 
+import com.biddingsystem.dto.BidsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -49,6 +50,13 @@ public class UserController {
 	public ResponseEntity deleteById (@PathVariable("id") Integer id)throws Exception{
 		userService.deleteById(id);
 		return new ResponseEntity(HttpStatus.OK);
+	}
+
+
+	@GetMapping("/search-user/{search}")
+	public ResponseEntity<List<UserDto>>searchBids(@PathVariable("search") String search) {
+		List<UserDto> dtoList = userService.searchUser(search);
+		return new ResponseEntity<>(dtoList, HttpStatus.OK);
 	}
 
 }

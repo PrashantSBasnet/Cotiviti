@@ -7,11 +7,8 @@ import com.biddingsystem.repo.BidsRepo;
 import com.biddingsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
-import java.io.Console;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class BidsServiceImpl implements BidsService {
@@ -24,8 +21,29 @@ public class BidsServiceImpl implements BidsService {
 
 
     @Override
-    public List<Bids> findAll() {
-        return (List<Bids>) bidsRepo.findAll();  //becasue directly fetching from repo
+    public List<BidsDto> findAllBids() {
+       List<Bids> bidsList = bidsRepo.findAllBids();
+
+      return  BidsDto.builder().build().toDto(bidsList);
+
+    }
+
+    @Override
+    public List<BidsDto> findbyStatus(String status) {
+        List<Bids> bidsList = bidsRepo.findByStatus(status);
+        return BidsDto.builder().build().toDto(bidsList);
+    }
+
+    @Override
+    public List<BidsDto> findAvailableBids(Integer id) {
+        List<Bids> bidsList = bidsRepo.findAvailabeBids(id);
+        return BidsDto.builder().build().toDto(bidsList);
+    }
+
+    @Override
+    public List<BidsDto> searchBids(String search) {
+        List<Bids> bidsList = bidsRepo.searchBids(search);
+        return BidsDto.builder().build().toDto(bidsList);
     }
 
 
@@ -45,15 +63,20 @@ public class BidsServiceImpl implements BidsService {
         bids.setProduct_name(bidsDto.getProduct_name());
         bids.setProduct_description(bidsDto.getProduct_description());
 
-        //null kina ayo?
+        //value ayo
         System.out.println(bidsDto.getUserId());
 
         //this is fine value ayooo.
         System.out.println(bidsDto.getBid_status());
 
-//        if (userRepo.findUserById(bidsDto.getUserId())!=null){
-//            bids.setBid_status("ok");
-//        }
+        if (userRepo.findUserById(bidsDto.getUserId())!=null & bidsDto.getUserId() != 0){
+            bids.setBid_status(bidsDto.getBid_status());
+        }
+        bids.setBid_status(bidsDto.getBid_status());
+
+        user = userRepo.findUserById(bidsDto.getUserId());
+
+        bids.setUsers(user);
 
 
         bidsRepo.save(bids); // repo takes entity

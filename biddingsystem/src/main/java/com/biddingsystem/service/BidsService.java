@@ -10,6 +10,13 @@ public interface BidsService {
 
     BidsDto save(BidsDto bidsDto) throws Exception;
 
-    List<Bids> findAll();
+    List<BidsDto> findAllBids();
+
+    List<BidsDto> findbyStatus(String status);
+
+    List<BidsDto> findAvailableBids(Integer id);
+
+    List<BidsDto> searchBids(String search);
+
 
 }
