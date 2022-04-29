@@ -1,69 +1,46 @@
 package com.biddingsystem.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.biddingsystem.entity.Bids;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.biddingsystem.entity.User;
 
 
-@NoArgsConstructor
+import lombok.*;
+
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDto {
-	
-	private Integer id; 
-	
-	private String userName; 
-	
-	private String password; 
-	
-	private String role; 
-	
+
+	private Integer id;
+
+	private String userName;
+
+	private String password;
+
+	private String role;
+
 	private Integer bidId;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public Integer getBidId() {
-		return bidId;
-	}
-
-	public void setBidId(Integer bidId) {
-		this.bidId = bidId;
-	}
 	
+	public UserDto (User entity) {
+		this.setId(entity.getId());
+		this.setPassword(entity.getPassword());
+		this.setRole(entity.getRole());
+		this.setUserName(entity.getUserName());
+		this.setBidId(entity.getBids().getId());
+	}
+
+
+
+    public List<UserDto> toDto(List<User> entityList) {
+	        List<UserDto> dtoList = new ArrayList<>();
+	        for (User user : entityList) {
+	            dtoList.add(new UserDto(user));
+	        }
+	        return dtoList;
+	    }
 
 }

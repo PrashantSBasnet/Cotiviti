@@ -7,14 +7,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.entity.User;
-import com.biddingsystem.repo.UserRepo;
 import com.biddingsystem.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,13 +28,14 @@ public class UserController {
 	}
 
 	@PostMapping("/saveUser")
-	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) throws Exception {
-		try {
-            userDto = userService.save(userDto);
-        } catch (NotFoundException e) {
-        } catch (DataIntegrityViolationException e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.ok("Saved");
+	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
+		
+		return new ResponseEntity<UserDto>(userService.save(userDto), HttpStatus.OK);	
+	}
+	
+	@GetMapping("/list/{role}")
+	public ResponseEntity<?> findbyStatus(@PathVariable("role") String role) throws Exception {
+		List<UserDto> dtoList = userService.findbyRole(role);
+		return ResponseEntity.ok("list of users by role found");
 	}
 }

@@ -2,19 +2,16 @@ package com.biddingsystem.entity;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
+import javax.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tbl_bids")
-@Data
+@Getter
+@Setter
 public class Bids {
 
 	@Id
@@ -30,4 +27,13 @@ public class Bids {
 	@OneToMany(targetEntity = User.class, mappedBy = "bids")
 	List<User> users;
 
+	public Bids(Integer id, String product_name, String product_description, String bid_status, List<User> users) {
+		this.id = id;
+		this.product_name = product_name;
+		this.product_description = product_description;
+		this.bid_status = bid_status;
+		this.users = users;
+	}
+
+	
 }
