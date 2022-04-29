@@ -24,18 +24,31 @@ public class UserController {
 
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getUsers() {
+
 		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
 
 	@PostMapping("/saveUser")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
-		
-		return new ResponseEntity<UserDto>(userService.save(userDto), HttpStatus.OK);	
+		return new ResponseEntity<UserDto>(userService.save(userDto), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/list/{role}")
 	public ResponseEntity<?> findbyStatus(@PathVariable("role") String role) throws Exception {
 		List<UserDto> dtoList = userService.findbyRole(role);
-		return ResponseEntity.ok("list of users by role found");
+		return new ResponseEntity(userService.findbyRole(role), HttpStatus.OK);
 	}
+
+	@GetMapping("/user/{id}")
+	public ResponseEntity<UserDto> findById (@PathVariable("id") Integer id)throws Exception{
+		UserDto dto = userService.findById(id);
+		return new ResponseEntity<UserDto>(userService.findById(id), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete-user/{id}")
+	public ResponseEntity deleteById (@PathVariable("id") Integer id)throws Exception{
+		userService.deleteById(id);
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
 }

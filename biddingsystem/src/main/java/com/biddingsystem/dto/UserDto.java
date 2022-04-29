@@ -15,13 +15,13 @@ import lombok.*;
 @Builder
 public class UserDto {
 
-	private Integer id;
+	public Integer id;
 
-	private String userName;
+	public String userName;
 
-	private String password;
+	public String password;
 
-	private String role;
+	public String role;
 
 	private Integer bidId;
 	
@@ -30,7 +30,6 @@ public class UserDto {
 		this.setPassword(entity.getPassword());
 		this.setRole(entity.getRole());
 		this.setUserName(entity.getUserName());
-		this.setBidId(entity.getBids().getId());
 	}
 
 

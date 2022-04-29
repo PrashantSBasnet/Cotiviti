@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 import com.biddingsystem.entity.User;
 
 @Repository
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface UserRepo extends JpaRepository<User, Integer> {
 
 	@Query(value = "Select * from tbl_user u where u.id =?1", nativeQuery = true)
-	User findById(Integer id);
-	
+	User findUserById(Integer id);
+
 	@Query(value = "Select * from tbl_user u where u.role =?1", nativeQuery = true)
 	List<User> findByRole (String role);
 

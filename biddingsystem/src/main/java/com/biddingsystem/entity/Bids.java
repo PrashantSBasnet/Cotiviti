@@ -24,16 +24,8 @@ public class Bids {
 
 	private String bid_status;
 
-	@OneToMany(targetEntity = User.class, mappedBy = "bids")
-	List<User> users;
-
-	public Bids(Integer id, String product_name, String product_description, String bid_status, List<User> users) {
-		this.id = id;
-		this.product_name = product_name;
-		this.product_description = product_description;
-		this.bid_status = bid_status;
-		this.users = users;
-	}
-
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "FK_USER_ID_ID"))
+	User users;
 	
 }

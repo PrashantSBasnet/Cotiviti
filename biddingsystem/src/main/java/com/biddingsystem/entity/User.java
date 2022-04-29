@@ -1,20 +1,13 @@
 package com.biddingsystem.entity;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
-import javax.persistence.ForeignKey;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,9 +30,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "bid_id", foreignKey = @ForeignKey(name = "FK_USER_ID_ID"))
-	private Bids bids;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Bids> bidList;
+
 
 	
 	
