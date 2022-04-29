@@ -21,4 +21,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 	@Query(value = "select * from tbl_user u where u.name like %?1% ", nativeQuery =true)
 	List<User> searchUser(String search);
 
+	@Query(value= "select count(user_id) from tbl_bids where user_id=?1", nativeQuery = true)
+	Integer totalBids(Integer id);
+
 }

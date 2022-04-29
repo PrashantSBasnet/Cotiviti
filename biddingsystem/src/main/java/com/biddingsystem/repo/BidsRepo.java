@@ -21,6 +21,7 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value="SELECT * FROM TBL_BIDS where bid_status= ?1", nativeQuery = true)
     List<Bids> findByStatus(String status);
 
+    //gives all posted/purchased bid ignoring specific user(logged in)
     @Query(value = "select * from tbl_bids b where  b.bid_status = 'true' and b.user_id <> ?1", nativeQuery = true)
     List<Bids> findAvailabeBids (Integer id);
 

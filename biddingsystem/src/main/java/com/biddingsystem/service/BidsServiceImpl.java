@@ -2,8 +2,10 @@ package com.biddingsystem.service;
 
 import com.biddingsystem.dto.BidsDto;
 import com.biddingsystem.entity.Bids;
+import com.biddingsystem.entity.Product;
 import com.biddingsystem.entity.User;
 import com.biddingsystem.repo.BidsRepo;
+import com.biddingsystem.repo.ProductRepo;
 import com.biddingsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class BidsServiceImpl implements BidsService {
 
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    ProductRepo productRepo;
 
 
     @Override
@@ -51,8 +56,9 @@ public class BidsServiceImpl implements BidsService {
     public BidsDto save(BidsDto bidsDto) throws Exception {
 
         User user;
-
+        Product product;
         Bids bids;
+
         if (bidsDto.getId() != null && bidsDto.getId() != 0) {
             bids = bidsRepo.findBidsById(bidsDto.getId()); //from repo, created by programmer
         } else {
@@ -60,8 +66,8 @@ public class BidsServiceImpl implements BidsService {
         }
 
         bids.setId(bidsDto.getId());
-        bids.setProduct_name(bidsDto.getProduct_name());
-        bids.setProduct_description(bidsDto.getProduct_description());
+        //bids.setProduct_name(bidsDto.getProduct_name());
+        //bids.setProduct_description(bidsDto.getProduct_description());
 
         //value ayo
         System.out.println(bidsDto.getUserId());
@@ -76,8 +82,10 @@ public class BidsServiceImpl implements BidsService {
 
         user = userRepo.findUserById(bidsDto.getUserId());
 
-        bids.setUsers(user);
+        product = productRepo.findProductsById(bidsDto.getProductId());
 
+        bids.setUsers(user);
+        bids.setProduct(product);
 
         bidsRepo.save(bids); // repo takes entity
         return bidsDto;

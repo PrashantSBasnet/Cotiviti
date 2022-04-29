@@ -24,12 +24,15 @@ public class BidsDto {
 
     private Integer userId;
 
+    private Integer productId;
+
     public BidsDto (Bids entity) {
         this.setId(entity.getId());
-        this.setProduct_name(entity.getProduct_name());
-        this.setProduct_description(entity.getProduct_description());
+       // this.setProduct_name(entity.getProduct_name());
+        //this.setProduct_description(entity.getProduct_description());
         this.setBid_status(entity.getBid_status());
         this.setUserId(entity.getUsers().getId());
+       // this.setProductId(entity.getProduct().getProduct_id());
     }
 
 
