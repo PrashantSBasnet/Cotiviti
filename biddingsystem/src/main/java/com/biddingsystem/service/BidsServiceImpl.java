@@ -66,6 +66,10 @@ public class BidsServiceImpl implements BidsService {
         }
 
         bids.setId(bidsDto.getId());
+
+        System.out.println(bidsDto.getBiddingRate());
+
+        bids.setBiddingRate(bidsDto.getBiddingRate());
         //bids.setProduct_name(bidsDto.getProduct_name());
         //bids.setProduct_description(bidsDto.getProduct_description());
 
@@ -78,6 +82,7 @@ public class BidsServiceImpl implements BidsService {
         if (userRepo.findUserById(bidsDto.getUserId())!=null & bidsDto.getUserId() != 0){
             bids.setBid_status(bidsDto.getBid_status());
         }
+
         bids.setBid_status(bidsDto.getBid_status());
 
         user = userRepo.findUserById(bidsDto.getUserId());

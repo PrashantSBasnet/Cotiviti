@@ -1,8 +1,6 @@
 package com.biddingsystem.repo;
 
-import com.biddingsystem.dto.BidsDto;
 import com.biddingsystem.entity.Bids;
-import com.biddingsystem.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,7 +23,7 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value = "select * from tbl_bids b where  b.bid_status = 'true' and b.user_id <> ?1", nativeQuery = true)
     List<Bids> findAvailabeBids (Integer id);
 
-    @Query(value = "select * from tbl_bids where product_name like %?1% ", nativeQuery =true)
+    @Query(value = "SELECT * FROM tbl_bids a INNER JOIN tbl_product b ON a.product_product_id = b.product_id where b.product_name like '%?1%'", nativeQuery =true)
     List<Bids> searchBids(String search);
 
 

@@ -21,7 +21,7 @@ public class Product {
 
     private String product_description;
 
-    @OneToMany
-    List<Product> productList;
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    User user;
 
 }

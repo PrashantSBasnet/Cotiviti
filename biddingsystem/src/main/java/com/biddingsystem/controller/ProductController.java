@@ -1,7 +1,6 @@
 package com.biddingsystem.controller;
 
 import com.biddingsystem.dto.ProductDto;
-import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

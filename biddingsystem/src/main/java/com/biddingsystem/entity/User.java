@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
+
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class User {
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Bids> bidList;
 
+	@OneToMany
+	private List<Product> products;
 
-	
-	
 }

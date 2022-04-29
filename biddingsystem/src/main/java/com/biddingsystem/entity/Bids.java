@@ -1,13 +1,10 @@
 package com.biddingsystem.entity;
 
-import java.util.List;
 
 
 import javax.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name = "tbl_bids")
@@ -29,7 +26,13 @@ public class Bids {
 	@JoinColumn(name = "user_id")
 	User users;
 
+	//check1
+	@ManyToOne(targetEntity = Bids.class, fetch = FetchType.LAZY)
+	Bids bids;
+
 	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	Product product;
+
+	private Double biddingRate;
 	
 }

@@ -15,4 +15,6 @@ public class ProductDto {
 
     public String product_description;
 
+    public Integer userId;
+
 }
