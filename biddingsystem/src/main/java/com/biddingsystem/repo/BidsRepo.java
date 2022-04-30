@@ -27,4 +27,12 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     List<Bids> searchBids(String search);
 
 
+    //reports
+
+    @Query(value="SELECT count(id) FROM TBL_BIDS where bid_status ='offer'", nativeQuery = true)
+    Integer sumAllPostedBid();
+
+    @Query(value="SELECT count(b.id) FROM TBL_BIDS b where b.bid_status ='offer' and b.product_product_id = ?1", nativeQuery = true)
+    Integer totalBidsPerProduct(Integer id);
+
 }

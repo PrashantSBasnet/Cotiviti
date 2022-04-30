@@ -16,4 +16,14 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 
     @Query(value = "select * from tbl_product", nativeQuery = true)
     List<Product> findAllProducts();
+
+    //reports
+
+    @Query(value = "select max(bidding_rate) from tbl_bids \n" +
+            "where product_product_id =\n" +
+            "(\n" +
+            "select product_product_id from tbl_bids \n" +
+            "where bid_status ='posted' and user_id= ?1\n" +
+            ")", nativeQuery = true)
+    Integer maxBidOfferedForUserProduct(Integer userid);
 }

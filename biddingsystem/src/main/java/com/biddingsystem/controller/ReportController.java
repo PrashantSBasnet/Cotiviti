@@ -20,10 +20,28 @@ public class ReportController {
 
 
     @GetMapping("/totalbids/{id}")
-    public ResponseEntity<Integer> totalBids(@PathVariable("id") Integer id) {
+    public ResponseEntity<Integer> sumAllPostedBid(@PathVariable("id") Integer id) {
         Integer sum = reportService.totalPostedBids(id);
         return new ResponseEntity<>(sum, HttpStatus.OK);
     }
+
+    @GetMapping("/total-bids-product/{id}")
+    public ResponseEntity<Integer> totalBidsPerProduct(@PathVariable("id") Integer id) {
+        Integer sum = reportService.totalBidsPerProduct(id);
+        return new ResponseEntity<>(sum, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/max-bid-user-product/{userId}")
+    public ResponseEntity<Integer>maxBidOfferedForUserProduct(@PathVariable("userId") Integer userId){
+        Integer sum = reportService.maxBidOfferedForUserProduct(userId);
+        return new ResponseEntity<>(sum, HttpStatus.OK);
+    }
+
+
+
+
+
 
 
 }

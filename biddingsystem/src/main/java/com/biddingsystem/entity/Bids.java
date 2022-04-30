@@ -26,9 +26,9 @@ public class Bids {
 	@JoinColumn(name = "user_id")
 	User users;
 
-	//check1
-	@ManyToOne(targetEntity = Bids.class, fetch = FetchType.LAZY)
-	Bids bids;
+//	//check1
+//	@ManyToOne(targetEntity = Bids.class, fetch = FetchType.LAZY)
+//	Bids bids;
 
 	@ManyToOne(targetEntity = Product.class, fetch = FetchType.LAZY)
 	Product product;
