@@ -8,6 +8,7 @@ import lombok.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,14 +22,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "name")
-	private String userName;
-
-	@Column(name = "role")
-	private String role;
+	@Column(name = "username")
+	private String username;
 
 	@Column(name = "password")
 	private String password;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"),inverseJoinColumns = @JoinColumn(name="role_id"))
+	private Set<Role> roles;
 
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Bids> bidList;

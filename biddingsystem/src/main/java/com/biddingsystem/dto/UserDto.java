@@ -2,7 +2,9 @@ package com.biddingsystem.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.biddingsystem.entity.Role;
 import com.biddingsystem.entity.User;
 
 
@@ -17,19 +19,19 @@ public class UserDto {
 
 	public Integer id;
 
-	public String userName;
+	public String username;
 
 	public String password;
 
-	public String role;
+	public Set<Role> role;
 
 	private Integer bidId;
 	
 	public UserDto (User entity) {
 		this.setId(entity.getId());
 		this.setPassword(entity.getPassword());
-		this.setRole(entity.getRole());
-		this.setUserName(entity.getUserName());
+		this.setRole(entity.getRoles());
+		this.setUsername(entity.getUsername());
 	}
 
 

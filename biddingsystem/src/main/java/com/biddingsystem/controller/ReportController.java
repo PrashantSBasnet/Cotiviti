@@ -1,9 +1,11 @@
 package com.biddingsystem.controller;
 
+
 import com.biddingsystem.service.BidsService;
 import com.biddingsystem.service.ReportService;
 import com.biddingsystem.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,10 @@ public class ReportController {
 
     private final UserService userService;
     private final BidsService bidsService;
-    private final ReportService reportService;
+
+
+    @Autowired
+    ReportService reportService;
 
 
     @GetMapping("/totalbids/{id}")

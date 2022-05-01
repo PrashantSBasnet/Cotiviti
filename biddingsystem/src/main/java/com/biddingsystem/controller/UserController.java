@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.entity.User;
@@ -19,6 +20,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getUsers() {
 
@@ -27,6 +31,9 @@ public class UserController {
 
 	@PostMapping("/saveUser")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
+		String pwd = userDto.getPassword();
+		String encrypt = passwordEncoder.encode(pwd);
+		userDto.setPassword(encrypt);
 		return new ResponseEntity<UserDto>(userService.save(userDto), HttpStatus.OK);
 	}
 

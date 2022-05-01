@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
 			user = new User();
 		}
 		user.setId(dto.getId());
-		user.setUserName(dto.getUserName());
-		user.setRole(dto.getRole());
+		user.setUsername(dto.getUsername());
+		user.setRoles(dto.getRole());
 		user.setPassword(dto.getPassword());
 
 		userRepo.save(user); // repo takes entity
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 			User entity = userOptional.get();
 			return UserDto.builder()
 					.id(entity.getId())
-					.userName(entity.getUserName())
+					.username(entity.getUsername())
 					.password(entity.getPassword()).build();
 		}
 		return  null;
