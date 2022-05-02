@@ -2,6 +2,8 @@ package com.biddingsystem.service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.biddingsystem.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.biddingsystem.dto.UserDto;
@@ -17,6 +19,14 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	UserRepo userRepo;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 	@Override
 	public UserDto save(UserDto dto) {

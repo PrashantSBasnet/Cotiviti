@@ -1,10 +1,16 @@
 package com.biddingsystem.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.biddingsystem.dto.UserInfo;
+import com.biddingsystem.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.biddingsystem.dto.UserDto;
@@ -23,12 +29,25 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	@GetMapping("/authenticate")
+	public ResponseEntity<UserInfo> authenticate(Authentication authentication) {
+		String username = authentication.getName();
+		User user = userService.findByUsername(username);
+		UserInfo userInfo = UserInfo.builder()
+				.userId(user.getId())
+				.username(user.getUsername())
+				.roles(user.getRoles().stream().map(Role::getRole).collect(Collectors.toSet()))
+				.build();
+		return new ResponseEntity<>(userInfo, HttpStatus.OK);
+	}
+
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getUsers() {
 
 		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/saveUser")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
 		String pwd = userDto.getPassword();

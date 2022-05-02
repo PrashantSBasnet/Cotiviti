@@ -8,6 +8,8 @@ import com.biddingsystem.entity.User;
 
 public interface UserService {
 
+	public User findByUsername(String username);
+
 	public List<User> findAll();
 
 	UserDto findById(Integer id);
@@ -17,5 +19,6 @@ public interface UserService {
 	List<UserDto> findbyRole (String role);
 
 	void deleteById(Integer id);
+
 	List<UserDto> searchUser(String search);
 }
