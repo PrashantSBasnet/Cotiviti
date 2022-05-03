@@ -13,6 +13,8 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Data
 @Service
@@ -49,5 +51,10 @@ public class ProductServiceImpl implements ProductService{
 
         productRepo.save(product); // repo takes entity
         return dto;
+    }
+
+    @Override
+    public Product findProductIdByproductname(String name) throws Exception {
+        return productRepo.findProductIdByProductName(name);
     }
 }
