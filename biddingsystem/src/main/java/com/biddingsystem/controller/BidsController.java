@@ -21,15 +21,7 @@ public class BidsController {
         return new ResponseEntity<BidsDto>(bidsService.save(bidsDto), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('USER')")
-    @GetMapping("/findAll")
-    public ResponseEntity<List<BidsDto>> getBids() {
 
-        List<BidsDto> dtoList = bidsService.findAllBids();
-
-        return new ResponseEntity<>(dtoList,HttpStatus.OK);
-
-    }
 
     @GetMapping("/find-by-status/{status}")
     public ResponseEntity<List<BidsDto>> findByStatus(@PathVariable("status") String status) throws Exception{

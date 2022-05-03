@@ -8,4 +8,10 @@ public interface ReportService {
     Integer totalBidsPerProduct(Integer id);
 
     Integer maxBidOfferedForUserProduct(Integer userId);
+
+    Integer totalUsers();
+
+    Integer totalOfferBids();
+
+    Integer allPostedBids();
 }

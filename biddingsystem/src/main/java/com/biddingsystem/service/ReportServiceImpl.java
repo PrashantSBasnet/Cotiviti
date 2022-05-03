@@ -20,7 +20,7 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public Integer totalPostedBids(Integer userId) {
-        return userRepo.totalBids(userId);
+        return userRepo.totalBidsUser(userId);
     }
 
     @Override
@@ -31,5 +31,20 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Integer maxBidOfferedForUserProduct(Integer userId) {
         return productRepo.maxBidOfferedForUserProduct(userId);
+    }
+
+    @Override
+    public Integer totalUsers() {
+        return userRepo.sumAllUsers();
+    }
+
+    @Override
+    public Integer totalOfferBids() {
+        return userRepo.totalOfferBids();
+    }
+
+    @Override
+    public Integer allPostedBids() {
+        return userRepo.totalPostedBids();
     }
 }

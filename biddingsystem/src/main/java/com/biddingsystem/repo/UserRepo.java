@@ -22,6 +22,15 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
 	//for reports
 	@Query(value= "select count(user_id) from tbl_bids where user_id=?1", nativeQuery = true)
-	Integer totalBids(Integer id);
+	Integer totalBidsUser(Integer id);
+
+	@Query(value="SELECT count(id) FROM TBL_USER ", nativeQuery = true)
+	Integer sumAllUsers();
+
+	@Query(value= "select count(user_id) from tbl_bids where bid_status='offer'", nativeQuery = true)
+	Integer totalOfferBids();
+
+	@Query(value= "select count(user_id) from tbl_bids where bid_status='posted'", nativeQuery = true)
+	Integer totalPostedBids();
 
 }

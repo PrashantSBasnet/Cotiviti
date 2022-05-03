@@ -13,8 +13,6 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value = "Select * from tbl_bids b where b.id =?1", nativeQuery = true)
     Bids findBidsById(Integer id);
 
-    @Query(value = "select * from tbl_bids", nativeQuery = true)
-    List<Bids> findAllBids();
 
     @Query(value="SELECT * FROM TBL_BIDS where bid_status= ?1", nativeQuery = true)
     List<Bids> findByStatus(String status);
@@ -30,9 +28,19 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     //reports
 
     @Query(value="SELECT count(id) FROM TBL_BIDS where bid_status ='offer'", nativeQuery = true)
+    Integer sumAllOfferBid();
+
+    @Query(value="SELECT count(id) FROM TBL_BIDS where bid_status ='posted'", nativeQuery = true)
     Integer sumAllPostedBid();
+
 
     @Query(value="SELECT count(b.id) FROM TBL_BIDS b where b.bid_status ='offer' and b.product_product_id = ?1", nativeQuery = true)
     Integer totalBidsPerProduct(Integer id);
+
+    @Query(value = "select * from tbl_bids where bid_status='offer'", nativeQuery = true)
+    List<Bids> findAllBids();
+
+
+
 
 }
