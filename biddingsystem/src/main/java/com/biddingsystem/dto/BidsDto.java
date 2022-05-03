@@ -20,6 +20,8 @@ public class BidsDto {
 
     private String bid_status;
 
+    private Boolean isSettled;
+
     private Integer userId;
 
     private Integer productId;
@@ -28,8 +30,7 @@ public class BidsDto {
 
     public BidsDto (Bids entity) {
         this.setId(entity.getId());
-        //this.setProduct_name(entity.getProduct_name());
-        //this.setProduct_description(entity.getProduct_description());
+        this.setIsSettled(entity.getIsSettled());
         this.setBid_status(entity.getBid_status());
         this.setUserId(entity.getUsers().getId());
         this.setProductId(entity.getProduct().getProduct_id());

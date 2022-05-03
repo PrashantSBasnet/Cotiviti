@@ -22,6 +22,8 @@ public class Bids {
 
 	private String bid_status;
 
+	private Boolean isSettled;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	User users;
@@ -34,5 +36,7 @@ public class Bids {
 	Product product;
 
 	private Double biddingRate;
+
+
 	
 }

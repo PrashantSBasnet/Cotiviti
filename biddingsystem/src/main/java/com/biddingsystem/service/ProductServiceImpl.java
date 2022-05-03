@@ -43,6 +43,8 @@ public class ProductServiceImpl implements ProductService{
 
         user= userRepo.findUserById(dto.getUserId());
 
+
+
         product.setUser(user);
 
         productRepo.save(product); // repo takes entity
