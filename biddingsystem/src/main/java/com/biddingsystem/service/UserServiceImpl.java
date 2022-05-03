@@ -79,4 +79,15 @@ public class UserServiceImpl implements UserService {
 		List<User> userList = userRepo.searchUser(search);
 		return UserDto.builder().build().toDto(userList);
 	}
+
+	@Override
+	public Integer findtotalPostedBidsByUser(Integer user_id) {
+		return userRepo.totalPostedBidsByUser(user_id);
+	}
+
+
+	@Override
+	public Integer findtotalOfferedBidsByUser(Integer user_id) {
+		return userRepo.totalOfferedBidsByUser(user_id);
+	}
 }

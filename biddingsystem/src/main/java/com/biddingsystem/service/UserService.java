@@ -21,4 +21,8 @@ public interface UserService {
 	void deleteById(Integer id);
 
 	List<UserDto> searchUser(String search);
+
+	Integer findtotalPostedBidsByUser(Integer user_id);
+
+	Integer findtotalOfferedBidsByUser(Integer user_id);
 }

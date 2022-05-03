@@ -81,4 +81,18 @@ public class UserController {
 		return new ResponseEntity<>(dtoList, HttpStatus.OK);
 	}
 
+
+	@GetMapping("/total-posted-bids-user/{user_id}")
+	public ResponseEntity<Integer> totalPostedBidsByUser (@PathVariable("user_id") Integer user_id) throws Exception{
+		Integer count =userService.findtotalPostedBidsByUser(user_id);
+		return new ResponseEntity<>(count,HttpStatus.OK);
+	}
+
+
+	@GetMapping("/total-offered-bids-user/{user_id}")
+	public ResponseEntity<Integer> totalOfferedBidsByUser (@PathVariable("user_id") Integer user_id) throws Exception{
+		Integer count =userService.findtotalOfferedBidsByUser(user_id);
+		return new ResponseEntity<>(count,HttpStatus.OK);
+	}
+
 }

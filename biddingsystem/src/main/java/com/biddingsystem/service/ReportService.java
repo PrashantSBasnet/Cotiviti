@@ -1,5 +1,8 @@
 package com.biddingsystem.service;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ReportService {
 
     Integer totalPostedBids(Integer userId);
@@ -14,4 +17,6 @@ public interface ReportService {
     Integer totalOfferBids();
 
     Integer allPostedBids();
+
+    List<Map<String,Object>> showAllUsers();
 }

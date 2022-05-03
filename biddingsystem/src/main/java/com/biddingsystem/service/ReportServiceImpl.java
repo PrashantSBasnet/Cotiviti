@@ -6,6 +6,9 @@ import com.biddingsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class ReportServiceImpl implements ReportService {
 
@@ -46,5 +49,10 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public Integer allPostedBids() {
         return userRepo.totalPostedBids();
+    }
+
+    @Override
+    public List<Map<String, Object>> showAllUsers() {
+        return userRepo.displayAllUsers();
     }
 }
