@@ -42,7 +42,7 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     List<Bids> findAllBids();
 
 
-    @Query(value= "SELECT a.id as bidid, a.is_settled, a.bid_status, a.bidding_rate, b.product_name, a.user_id\n" +
+    @Query(value= "SELECT a.id as bidid, b.product_id, a.is_settled, a.bid_status, a.bidding_rate, b.product_name, a.user_id\n" +
             "FROM tbl_bids a\n" +
             "INNER JOIN tbl_product b\n" +
             "ON a.product_product_id= b.product_id\n" +
