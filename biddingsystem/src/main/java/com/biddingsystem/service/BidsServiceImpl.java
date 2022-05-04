@@ -94,9 +94,9 @@ public class BidsServiceImpl implements BidsService {
 
          user = userRepo.findUserById(bidsDto.getUserId());
 
-        //product = productRepo.findProductsById(bidsDto.getProductId());
+        product = productRepo.findProductsById(bidsDto.getProduct_id());
 
-        product= productRepo.findProductIdByProductName(bidsDto.getProductName());
+        //product= productRepo.findProductIdByProductName(bidsDto.getProductName());
 
         bids.setUsers(user);
         bids.setProduct(product);

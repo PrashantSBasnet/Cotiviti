@@ -35,6 +35,6 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     Product findProductIdByProductName(String productname);
 
 
-    @Query (value= "SELECT  b.product_description, b.product_name, a.bid_status,  a.user_id FROM tbl_bids a INNER JOIN tbl_product b ON a.product_product_id= b.product_id and a.bid_status = 'posted'", nativeQuery = true)
+    @Query (value= "SELECT a.product_product_id, b.product_description, b.product_name, a.bid_status,  a.user_id FROM tbl_bids a INNER JOIN tbl_product b ON a.product_product_id= b.product_id and a.bid_status = 'posted'", nativeQuery = true)
     List<Map<String,Object>> showAllPostedBids();
 }

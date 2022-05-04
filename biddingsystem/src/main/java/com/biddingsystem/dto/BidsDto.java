@@ -24,9 +24,9 @@ public class BidsDto {
 
     private Integer userId;
 
-    private String productName;
+    //private String productName;
 
-    //private Integer productId;
+   private Integer product_id;
 
     private Double biddingRate;
 
@@ -35,8 +35,8 @@ public class BidsDto {
         this.setIsSettled(entity.getIsSettled());
         this.setBid_status(entity.getBid_status());
         this.setUserId(entity.getUsers().getId());
-        //this.setProductId(entity.getProduct().getProduct_id());
-        this.setProductName(entity.getProduct().getProduct_name());
+        this.setProduct_id(entity.getProduct().getProduct_id());
+        //this.setProductName(entity.getProduct().getProduct_name());
         this.setBiddingRate(entity.getBiddingRate());
     }
 

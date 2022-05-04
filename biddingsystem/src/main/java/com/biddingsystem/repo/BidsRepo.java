@@ -46,7 +46,7 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
             "FROM tbl_bids a\n" +
             "INNER JOIN tbl_product b\n" +
             "ON a.product_product_id= b.product_id\n" +
-            "where a.bid_status='offer' and a.user_id <> ?1 \n" +
+            "where a.bid_status='offer' and a.is_settled=false and a.user_id <> ?1 \n" +
             "order by bidding_rate desc;", nativeQuery = true)
     List<Map<String,Object>> offersInMyPosts(Integer userId);
 
