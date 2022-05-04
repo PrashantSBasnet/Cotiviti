@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer> {
@@ -32,4 +33,8 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query(value = "Select * from tbl_product p where p.product_id =\n" +
             "(select product_id from tbl_product where product_name = 'Motorcycle')", nativeQuery = true)
     Product findProductIdByProductName(String productname);
+
+
+    @Query (value= "SELECT  b.product_description, b.product_name, a.bid_status,  a.user_id FROM tbl_bids a INNER JOIN tbl_product b ON a.product_product_id= b.product_id and a.bid_status = 'posted'", nativeQuery = true)
+    List<Map<String,Object>> showAllPostedBids();
 }

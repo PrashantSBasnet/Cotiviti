@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
+import java.util.Optional;
 
 
 @Data
@@ -56,5 +59,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product findProductIdByproductname(String name) throws Exception {
         return productRepo.findProductIdByProductName(name);
+    }
+
+    @Override
+    public List<Map<String, Object>> showAllPostedBids() {
+        return productRepo.showAllPostedBids();
     }
 }
