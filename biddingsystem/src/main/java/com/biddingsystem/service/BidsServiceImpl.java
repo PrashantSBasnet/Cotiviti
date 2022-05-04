@@ -10,6 +10,7 @@ import com.biddingsystem.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -49,6 +50,11 @@ public class BidsServiceImpl implements BidsService {
     public List<BidsDto> searchBids(String search) {
         List<Bids> bidsList = bidsRepo.searchBids(search);
         return BidsDto.builder().build().toDto(bidsList);
+    }
+
+    @Override
+    public List<Map<String, Object>> offersInMyPosts(Integer userId) {
+        return bidsRepo.offersInMyPosts(userId);
     }
 
 

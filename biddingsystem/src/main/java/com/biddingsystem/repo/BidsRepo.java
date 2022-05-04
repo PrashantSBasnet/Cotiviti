@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface BidsRepo extends JpaRepository<Bids, Integer> {
@@ -17,7 +18,7 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value="SELECT * FROM TBL_BIDS where bid_status= ?1", nativeQuery = true)
     List<Bids> findByStatus(String status);
 
-    //gives all posted/purchased bid ignoring specific user(logged in)
+    //gives all bid ignoring specific user(logged in)
     @Query(value = "select * from tbl_bids b where  b.bid_status = 'offer' and b.user_id <> ?1", nativeQuery = true)
     List<Bids> findAvailabeBids (Integer id);
 
@@ -40,6 +41,14 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value = "select * from tbl_bids where bid_status='offer'", nativeQuery = true)
     List<Bids> findAllBids();
 
+
+    @Query(value= "SELECT a.id as bidid, a.is_settled, a.bid_status, a.bidding_rate, b.product_name, a.user_id\n" +
+            "FROM tbl_bids a\n" +
+            "INNER JOIN tbl_product b\n" +
+            "ON a.product_product_id= b.product_id\n" +
+            "where a.bid_status='offer' and a.user_id <> ?1 \n" +
+            "order by bidding_rate desc;", nativeQuery = true)
+    List<Map<String,Object>> offersInMyPosts(Integer userId);
 
 
 

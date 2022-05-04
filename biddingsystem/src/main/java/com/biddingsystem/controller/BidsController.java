@@ -56,5 +56,15 @@ public class BidsController {
     }
 
 
+    @GetMapping("/offerInMyPosts/{userId}")
+    public ResponseEntity<List<Map<String,Object>>> offersInMyPosts (@PathVariable("userId")  Integer userId){
+        List<Map<String,Object>> offersInMyPosts = bidsService.offersInMyPosts(userId);
+        return new ResponseEntity<>(offersInMyPosts, HttpStatus.OK);
+    }
+
+
+
+
+
 
 }

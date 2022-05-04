@@ -5,6 +5,7 @@ import com.biddingsystem.dto.UserDto;
 import com.biddingsystem.entity.Bids;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BidsService {
 
@@ -17,6 +18,8 @@ public interface BidsService {
     List<BidsDto> findAvailableBids(Integer id);
 
     List<BidsDto> searchBids(String search);
+
+    List<Map<String,Object>> offersInMyPosts(Integer userId);
 
 
 }
