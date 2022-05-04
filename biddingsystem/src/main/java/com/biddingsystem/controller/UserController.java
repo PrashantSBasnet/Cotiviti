@@ -47,7 +47,7 @@ public class UserController {
 		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
 
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	//@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/saveUser")
 	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) throws Exception {
 		String pwd = userDto.getPassword();
