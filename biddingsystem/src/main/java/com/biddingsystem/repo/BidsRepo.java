@@ -50,6 +50,4 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
             "order by bidding_rate desc;", nativeQuery = true)
     List<Map<String,Object>> offersInMyPosts(Integer userId);
 
-
-
 }
