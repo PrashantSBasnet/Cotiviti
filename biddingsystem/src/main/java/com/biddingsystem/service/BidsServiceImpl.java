@@ -27,10 +27,9 @@ public class BidsServiceImpl implements BidsService {
 
 
     @Override
-    public List<BidsDto> findAllBids() {
-       List<Bids> bidsList = bidsRepo.findAllBids();
-
-      return  BidsDto.builder().build().toDto(bidsList);
+    public List<Map<String,Object>>  findAllBids() {
+       // List<Map<String,Object>> bidsList = bidsRepo.findAllBids();
+        return  bidsRepo.findAllBids();
 
     }
 

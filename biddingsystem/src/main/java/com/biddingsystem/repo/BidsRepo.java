@@ -38,8 +38,9 @@ public interface BidsRepo extends JpaRepository<Bids, Integer> {
     @Query(value="SELECT count(b.id) FROM TBL_BIDS b where b.bid_status ='offer' and b.product_product_id = ?1", nativeQuery = true)
     Integer totalBidsPerProduct(Integer id);
 
-    @Query(value = "select * from tbl_bids where bid_status='offer'", nativeQuery = true)
-    List<Bids> findAllBids();
+    @Query(value = "SELECT a.id as bid,  a.bid_status, b.product_name, a.product_product_id,  a.user_id, a.bidding_rate \n" +
+            "FROM tbl_bids a INNER JOIN tbl_product b ON a.product_product_id= b.product_id and a.bid_status = 'offer'", nativeQuery = true)
+    List<Map<String,Object>> findAllBids();
 
 
     @Query(value= "SELECT a.id as bidid, b.product_id, a.is_settled, a.bid_status, a.bidding_rate, b.product_name, a.user_id\n" +

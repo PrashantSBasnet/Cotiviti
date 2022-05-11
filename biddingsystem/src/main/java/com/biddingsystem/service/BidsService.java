@@ -11,7 +11,7 @@ public interface BidsService {
 
     BidsDto save(BidsDto bidsDto) throws Exception;
 
-    List<BidsDto> findAllBids();
+    List<Map<String,Object>> findAllBids();
 
     List<BidsDto> findbyStatus(String status);
 
