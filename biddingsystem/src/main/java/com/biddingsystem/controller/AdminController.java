@@ -74,6 +74,4 @@ public class AdminController {
         List<Map<String,Object>> allPostedBids = productService.showAllPostedBids();
         return new ResponseEntity<>(allPostedBids,HttpStatus.OK);
     }
-
-
 }
